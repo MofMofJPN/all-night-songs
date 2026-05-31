@@ -100,8 +100,8 @@ function renderSongCard(song, opts = {}) {
         <button class="btn btn-secondary btn-icon memo-btn" data-id="${escapeHtml(song.id)}"
           aria-label="メモを編集" aria-expanded="false">📝</button>
         ${showCopy ? `
-          <button class="btn btn-secondary copy-btn" data-id="${escapeHtml(song.id)}"
-            aria-label="リクエスト文をコピー">📋 コピー</button>` : ''}
+          <button class="btn btn-secondary btn-icon copy-btn" data-id="${escapeHtml(song.id)}"
+            aria-label="リクエスト文をコピー">📋</button>` : ''}
         ${showShare ? `
           <button class="btn btn-secondary share-btn" data-id="${escapeHtml(song.id)}"
             aria-label="Xでシェア">🐦</button>` : ''}
@@ -224,7 +224,7 @@ export function bindSongCardEvents(container, onUpdate) {
       const id = copyBtn.dataset.id;
       const song = getSongById(id);
       if (song) {
-        const text = `${song.title} お願いします🎤\n#ゑうえうに #ALLNIGHTSONGS`;
+        const text = `${song.title} お願いします🎤`;
         const ok = await copyToClipboard(text);
         showToast(ok ? '📋 コピーしました' : 'コピーに失敗しました');
       }
@@ -754,13 +754,6 @@ export function renderAbout(container) {
           </div>
         </section>
 
-        <section class="about-section">
-          <h3 class="about-section__title">リンク</h3>
-          <a href="https://lit.link/eucoro" target="_blank" rel="noopener noreferrer"
-            class="about-link">
-            🔗 ゑうたん公式リットリンク
-          </a>
-        </section>
       </div>
     </div>`;
 

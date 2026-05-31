@@ -401,6 +401,16 @@ img, svg {
   min-height: 40px;
 }
 
+/* アイコンのみのボタンは固定サイズ・伸ばさない */
+.song-card__actions .btn-icon {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  font-size: 16px;
+  min-height: 40px;
+}
+
 /* ---- Memo Area ---- */
 .memo-area {
   margin-top: 12px;
