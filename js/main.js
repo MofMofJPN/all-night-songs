@@ -2,7 +2,7 @@
  * main.js — エントリーポイント・ルーティング
  */
 
-import { loadSongs } from './data.js';
+import { loadSongs, getSongById } from './data.js';
 import { generateStars } from './utils.js';
 import { getMatches } from './matching.js';
 import { setLastResults, hasSeenWelcome, markWelcomeSeen } from './storage.js';
@@ -55,7 +55,6 @@ function route() {
         const snap = sessionStorage.getItem('ans:resultSnapshot');
         if (snap) {
           const { answers, perfectIds, closeIds } = JSON.parse(snap);
-          const { getSongById } = await import('./data.js');
           const perfect = perfectIds.map(id => getSongById(id)).filter(Boolean);
           const close = closeIds.map(id => getSongById(id)).filter(Boolean);
           renderResult(app, answers, { perfect, close });
