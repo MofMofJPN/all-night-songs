@@ -835,6 +835,8 @@ export function renderShuffle(container) {
         </div>
         <div class="shuffle-card__actions">
           <button class="btn btn-primary" id="shuffleAgain">[ もう1曲 ]</button>
+          <button class="btn btn-secondary btn-icon" id="shuffleCopy"
+            aria-label="リクエスト文をコピー">📋</button>
           <button class="btn btn-secondary" id="shuffleClose">[ 閉じる ]</button>
         </div>
       </div>`;
@@ -842,6 +844,11 @@ export function renderShuffle(container) {
     document.body.appendChild(div);
 
     div.querySelector('#shuffleAgain').addEventListener('click', showRandomSong);
+    div.querySelector('#shuffleCopy').addEventListener('click', async () => {
+      const text = `${song.title} お願いします🎤`;
+      const ok = await copyToClipboard(text);
+      showToast(ok ? '📋 コピーしました' : 'コピーに失敗しました');
+    });
     div.querySelector('#shuffleClose').addEventListener('click', () => {
       div.remove();
       window.history.back();
