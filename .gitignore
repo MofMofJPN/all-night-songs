@@ -1,8 +1,40 @@
+# 依存関係
 node_modules/
+
+# OS 生成ファイル
 .DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ログ
 *.log
+npm-debug.log*
+
+# 環境変数
 .env
 .env.*
+!.env.example
+
+# ビルド成果物
 dist/
+build/
+out/
+
+# キャッシュ
 .cache/
+.sass-cache/
+.parcel-cache/
+
+# エディタ設定
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.orig
+
+# Claude Code
 .claude/
