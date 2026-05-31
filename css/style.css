@@ -401,6 +401,53 @@ img, svg {
   min-height: 40px;
 }
 
+/* ---- Memo Area ---- */
+.memo-area {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: var(--border-soft);
+}
+
+.memo-area[hidden] {
+  display: none;
+}
+
+.memo-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--color-bg);
+  border: var(--border-soft);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.memo-textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.memo-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.memo-area__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+
+.memo-area__actions .btn {
+  font-size: 13px;
+  padding: 8px 16px;
+  min-height: 36px;
+}
+
 /* ---- Page Footer ---- */
 .page-footer {
   padding: 20px var(--page-padding);

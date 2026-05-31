@@ -15,6 +15,8 @@ import {
   getMemo, setMemo,
   exportData, importData, clearAllData,
 } from './storage.js';
+
+// メモ入力フォームのスタイルは style.css に記載
 import { escapeHtml, showToast, copyToClipboard, shuffle } from './utils.js';
 
 /* ---- カラス SVG（プレースホルダー） ---- */
@@ -95,6 +97,8 @@ function renderSongCard(song, opts = {}) {
         ${showListen ? `
           <button class="btn btn-secondary btn-icon listen-btn" data-id="${escapeHtml(song.id)}"
             aria-label="聴いた記録を追加">✅</button>` : ''}
+        <button class="btn btn-secondary btn-icon memo-btn" data-id="${escapeHtml(song.id)}"
+          aria-label="メモを編集" aria-expanded="false">📝</button>
         ${showCopy ? `
           <button class="btn btn-secondary copy-btn" data-id="${escapeHtml(song.id)}"
             aria-label="リクエスト文をコピー">📋 コピー</button>` : ''}
@@ -109,6 +113,16 @@ function renderSongCard(song, opts = {}) {
           <a href="${ytMusicUrl}" target="_blank" rel="noopener noreferrer"
             class="btn btn-secondary btn-icon" aria-label="YouTube Musicで検索">▶️</a>` : ''}
       </div>
+      <div class="memo-area" id="memo-area-${escapeHtml(song.id)}" hidden>
+        <textarea class="memo-textarea" rows="2"
+          placeholder="メモを入力（自分用のメモです）..."
+          data-id="${escapeHtml(song.id)}"
+          aria-label="メモ入力">${escapeHtml(memo)}</textarea>
+        <div class="memo-area__actions">
+          <button class="btn btn-secondary memo-save" data-id="${escapeHtml(song.id)}">保存</button>
+          <button class="btn btn-secondary memo-cancel" data-id="${escapeHtml(song.id)}">キャンセル</button>
+        </div>
+      </div>
     </div>`;
 }
 
@@ -117,8 +131,60 @@ export function bindSongCardEvents(container, onUpdate) {
   container.addEventListener('click', async (e) => {
     const favBtn = e.target.closest('.fav-btn');
     const listenBtn = e.target.closest('.listen-btn');
+    const memoBtn = e.target.closest('.memo-btn');
+    const memoSave = e.target.closest('.memo-save');
+    const memoCancel = e.target.closest('.memo-cancel');
     const copyBtn = e.target.closest('.copy-btn');
     const shareBtn = e.target.closest('.share-btn');
+
+    if (memoBtn) {
+      const id = memoBtn.dataset.id;
+      const area = container.querySelector(`#memo-area-${id}`);
+      if (!area) return;
+      const open = area.hidden;
+      area.hidden = !open;
+      memoBtn.setAttribute('aria-expanded', String(open));
+      if (open) {
+        area.querySelector('.memo-textarea')?.focus();
+      }
+    }
+
+    if (memoSave) {
+      const id = memoSave.dataset.id;
+      const area = container.querySelector(`#memo-area-${id}`);
+      const textarea = area?.querySelector('.memo-textarea');
+      if (!textarea) return;
+      setMemo(id, textarea.value);
+      area.hidden = true;
+      // メモ表示を更新
+      const card = container.querySelector(`.song-card[data-song-id="${id}"]`);
+      if (card) {
+        const noteEl = card.querySelector('.memo-display');
+        const metaEl = card.querySelector('.song-card__meta');
+        const text = textarea.value.trim();
+        if (noteEl) {
+          noteEl.textContent = text ? `📝 ${text}` : '';
+          noteEl.hidden = !text;
+        } else if (text && metaEl) {
+          const div = document.createElement('div');
+          div.className = 'song-card__note memo-display';
+          div.textContent = `📝 ${text}`;
+          metaEl.appendChild(div);
+        }
+      }
+      showToast('📝 メモを保存しました');
+    }
+
+    if (memoCancel) {
+      const id = memoCancel.dataset.id;
+      const area = container.querySelector(`#memo-area-${id}`);
+      if (area) {
+        area.hidden = true;
+        // テキストを保存前の値に戻す
+        const textarea = area.querySelector('.memo-textarea');
+        if (textarea) textarea.value = getMemo(id);
+      }
+    }
 
     if (favBtn) {
       const id = favBtn.dataset.id;
