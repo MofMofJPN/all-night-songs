@@ -104,6 +104,8 @@ function renderSongCard(song, opts = {}) {
         ${showStreaming ? `
           <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer"
             class="btn btn-secondary btn-icon" aria-label="Spotifyで検索">🎧</a>
+          <a href="${appleMusicUrl}" target="_blank" rel="noopener noreferrer"
+            class="btn btn-secondary btn-icon" aria-label="Apple Musicで検索">🍎</a>
           <a href="${ytMusicUrl}" target="_blank" rel="noopener noreferrer"
             class="btn btn-secondary btn-icon" aria-label="YouTube Musicで検索">▶️</a>` : ''}
       </div>

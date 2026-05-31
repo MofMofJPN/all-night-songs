@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p css js data assets)",
+      "Bash(cp songs.json data/songs.json)",
+      "Bash(python3 -m http.server 8080)",
+      "Bash(echo \"Server PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/)",
+      "Bash(curl -s http://localhost:8080/)",
+      "Bash(curl -s -o /dev/null -w \"HTTP status: %{http_code}\\\\n\" http://localhost:8080/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/js/main.js)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/data/songs.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/css/style.css)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git branch *)",
+      "Bash(git commit -m ' *)",
+      "Bash(node --check js/main.js)",
+      "Bash(node --check js/ui.js)",
+      "Bash(curl -s http://localhost:8080/js/main.js)"
+    ]
+  }
+}

@@ -49,12 +49,26 @@ function route() {
     case '/shuffle':
       renderShuffle(app);
       break;
+    case '/result': {
+      // sessionStorage から前回の結果を復元（ブラウザバック対応）
+      try {
+        const snap = sessionStorage.getItem('ans:resultSnapshot');
+        if (snap) {
+          const { answers, perfectIds, closeIds } = JSON.parse(snap);
+          const { getSongById } = await import('./data.js');
+          const perfect = perfectIds.map(id => getSongById(id)).filter(Boolean);
+          const close = closeIds.map(id => getSongById(id)).filter(Boolean);
+          renderResult(app, answers, { perfect, close });
+          break;
+        }
+      } catch { /* ignore */ }
+      // 結果なし → クイズへ
+      renderQuiz(app, {}, 0);
+      history.replaceState(null, '', '#/quiz');
+      break;
+    }
     default:
-      if (hash.startsWith('/result')) {
-        // 結果画面は init() が呼ぶため、ここでは何もしない
-      } else {
-        renderHome(app);
-      }
+      renderHome(app);
   }
 
   // スクロールをトップへ
@@ -69,6 +83,15 @@ document.addEventListener('quiz-complete', (e) => {
   // 直前の結果を保存（重複回避）
   const allShown = [...results.perfect, ...results.close].map(s => s.id);
   setLastResults(allShown);
+
+  // ブラウザバックで結果を復元できるよう、IDをsessionStorageに保存
+  try {
+    sessionStorage.setItem('ans:resultSnapshot', JSON.stringify({
+      answers,
+      perfectIds: results.perfect.map(s => s.id),
+      closeIds: results.close.map(s => s.id),
+    }));
+  } catch { /* ignore */ }
 
   // 結果画面へ
   renderResult(app, answers, results);
