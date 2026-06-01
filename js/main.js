@@ -92,9 +92,9 @@ document.addEventListener('quiz-complete', (e) => {
     }));
   } catch { /* ignore */ }
 
-  // 結果画面へ
+  // 結果画面へ（hashchange を発火させず URL だけ更新）
   renderResult(app, answers, results);
-  window.location.hash = '#/result';
+  history.pushState(null, '', '#/result');
 });
 
 // ---- 初期化 ----

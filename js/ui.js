@@ -128,7 +128,12 @@ function renderSongCard(song, opts = {}) {
 
 /* ---- ソングカードのイベント登録（共通） ---- */
 export function bindSongCardEvents(container, onUpdate) {
-  container.addEventListener('click', async (e) => {
+  // 同じコンテナに重複してリスナーが積まれないよう、前回分を除去
+  if (container._songCardListener) {
+    container.removeEventListener('click', container._songCardListener);
+  }
+
+  const handler = async (e) => {
     const favBtn = e.target.closest('.fav-btn');
     const listenBtn = e.target.closest('.listen-btn');
     const memoBtn = e.target.closest('.memo-btn');
@@ -239,7 +244,10 @@ export function bindSongCardEvents(container, onUpdate) {
         window.open(url, '_blank', 'noopener,noreferrer');
       }
     }
-  });
+  };
+
+  container._songCardListener = handler;
+  container.addEventListener('click', handler);
 }
 
 /* ================================================================
@@ -577,8 +585,11 @@ export function renderSongs(container) {
     container.querySelector('#filterToggle').setAttribute('aria-expanded', String(filterOpen));
   });
 
-  // フィルターチップ
-  container.addEventListener('click', (e) => {
+  // フィルターチップ（重複リスナー防止のため古い参照を先に除去）
+  if (container._filterChipListener) {
+    container.removeEventListener('click', container._filterChipListener);
+  }
+  const filterChipHandler = (e) => {
     const chip = e.target.closest('.filter-chip');
     if (!chip) return;
     const key = chip.dataset.filterKey;
@@ -590,8 +601,9 @@ export function renderSongs(container) {
     }
     renderFilterPanel();
     renderList();
-    // フィルターチップのイベントを再度バインド（renderFilterPanel で DOM 更新後）
-  });
+  };
+  container._filterChipListener = filterChipHandler;
+  container.addEventListener('click', filterChipHandler);
 }
 
 /* ================================================================
