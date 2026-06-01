@@ -905,6 +905,162 @@ img, svg {
   color: var(--color-accent);
 }
 
+/* ---- subnav-bottom（使い方 + About 横並び） ---- */
+.subnav-bottom {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.subnav-bottom .btn {
+  flex: 1;
+  font-size: 13px;
+  padding: 12px 8px;
+}
+
+/* ---- Help Page ---- */
+.page-help .page-content {
+  flex: 1;
+  padding: 16px var(--page-padding) 48px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.help-intro {
+  background: var(--color-primary-soft);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin-bottom: 8px;
+}
+
+.help-intro p {
+  font-size: 14px;
+  color: var(--color-text-sub);
+  line-height: 1.85;
+  margin: 0;
+}
+
+.help-h2 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 28px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: var(--border-soft);
+}
+
+.help-h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary-hover);
+  margin: 18px 0 8px;
+}
+
+.help-content p {
+  font-size: 14px;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  margin-bottom: 8px;
+}
+
+.help-tip {
+  background: rgba(155, 133, 196, 0.07);
+  border: var(--border-soft);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+.help-tip p { margin-bottom: 4px; }
+.help-tip p:last-child { margin-bottom: 0; }
+
+.help-ul,
+.help-ol {
+  padding-left: 1.4em;
+  margin-bottom: 12px;
+}
+
+.help-ul li,
+.help-ol li {
+  font-size: 14px;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  margin-bottom: 4px;
+}
+
+.help-ul li::marker { color: var(--color-primary); }
+.help-ol li::marker { color: var(--color-primary); font-weight: 700; }
+
+/* ボタンラベル風インラインコード */
+.help-btn {
+  font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  background: rgba(155, 133, 196, 0.15);
+  border: var(--border-soft);
+  border-radius: 6px;
+  padding: 2px 8px;
+  color: var(--color-primary-hover);
+  white-space: nowrap;
+}
+
+/* タグバッジ風インラインコード */
+.help-badge {
+  font-size: 12px;
+  background: rgba(155, 133, 196, 0.08);
+  border: var(--border-soft);
+  border-radius: 12px;
+  padding: 2px 8px;
+  color: var(--color-text-sub);
+}
+
+.help-pre {
+  background: var(--color-bg-card);
+  border: var(--border-soft);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.75;
+  margin: 10px 0 12px;
+  overflow-x: auto;
+  font-family: 'Noto Sans JP', monospace;
+}
+
+.help-note {
+  font-size: 13px !important;
+  color: var(--color-text-muted) !important;
+}
+
+.help-hr {
+  border: none;
+  border-top: var(--border-soft);
+  margin: 28px 0;
+}
+
+.help-section--closing {
+  text-align: center;
+}
+
+.help-cta {
+  margin-top: 16px !important;
+  font-size: 15px !important;
+  color: var(--color-text) !important;
+}
+
+.help-footer-note {
+  font-size: 11px !important;
+  color: var(--color-text-muted) !important;
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: var(--border-soft);
+}
+
 /* ---- About Page ---- */
 .page-about .page-content {
   flex: 1;

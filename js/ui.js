@@ -254,7 +254,10 @@ export function renderHome(container) {
             <a href="#/history" class="btn btn-secondary">[ 聴いた記録 ]</a>
             <a href="#/shuffle" class="btn btn-secondary">[ シャッフル ]</a>
           </div>
-          <a href="#/about" class="btn btn-secondary btn-about">[ About ]</a>
+          <div class="subnav-bottom">
+            <a href="#/help" class="btn btn-secondary">[ 使い方 ]</a>
+            <a href="#/about" class="btn btn-secondary">[ About ]</a>
+          </div>
         </nav>
       </main>
       <footer class="page-footer">
@@ -688,6 +691,184 @@ export function renderHistory(container) {
     </div>`;
 
   bindSongCardEvents(container);
+}
+
+/* ================================================================
+   使い方ガイド
+   ================================================================ */
+export function renderHelp(container) {
+  container.innerHTML = `
+    <div class="page page-help">
+      ${renderPageHeader()}
+      <div class="page-content">
+        <a href="#/" class="page-back">← トップへ</a>
+        <h2 class="page-title">🌙 使い方ガイド</h2>
+
+        <div class="help-content">
+
+          <blockquote class="help-intro">
+            <p>ゑうたんに歌ってほしい今夜の1曲を、<br>いっしょに探すサイトです。</p>
+          </blockquote>
+
+          <!-- はじめに -->
+          <section class="help-section">
+            <p>このサイトは、ゑうたんが歌える曲のなかから、リスナーさんが「今聴きたい1曲」を見つけてリクエストできるように作りました。</p>
+            <p>スマホで配信を聴きながら、サッと使えます。<br>ぜんぶ無料、登録もいりません。</p>
+          </section>
+
+          <hr class="help-hr">
+
+          <!-- 3ステップ -->
+          <section class="help-section">
+            <h2 class="help-h2">🎤 まずはこの3ステップから</h2>
+
+            <h3 class="help-h3">① 曲を探す</h3>
+            <p>ふたつの方法があります。</p>
+
+            <div class="help-tip">
+              <p><strong>🔍 聴きたい曲が決まってるとき</strong></p>
+              <p><code class="help-btn">[ 全曲リスト ]</code> をタップ → 検索バーに曲名やアーティスト名を入れる</p>
+            </div>
+            <div class="help-tip">
+              <p><strong>✨ 気分で選びたいとき</strong></p>
+              <p><code class="help-btn">[ 今夜の1曲を探す ]</code> をタップ → 3つの質問に答えるだけ</p>
+            </div>
+
+            <p>質問はこの3つ:</p>
+            <ul class="help-ul">
+              <li>今の気分は？（切ない / エモい / 元気 / 盛り上がる / かっこいい / 優しい）</li>
+              <li>テンポは？（スロー / ミドル / アップ）</li>
+              <li>どんなシーンで聴きたい？（しっとり / 盛り上がり / 泣きたい夜 / 朝・お出かけ）</li>
+            </ul>
+
+            <h3 class="help-h3">② リクエスト文をコピー</h3>
+            <p>気になった曲が見つかったら、曲カードの <strong>📋アイコン</strong> をタップ。</p>
+            <pre class="help-pre">○○ お願いします🎤</pre>
+            <p>がクリップボードにコピーされるので、そのまま配信のコメント欄に貼ってね。</p>
+
+            <h3 class="help-h3">③ お気に入りに保存</h3>
+            <p>気に入った曲は <strong>❤️アイコン</strong> をタップ。<br>あとから <code class="help-btn">[ お気に入り ]</code> ページで一覧できます。</p>
+          </section>
+
+          <hr class="help-hr">
+
+          <!-- シーン別 -->
+          <section class="help-section">
+            <h2 class="help-h2">🌙 シーン別 おすすめの使い方</h2>
+
+            <h3 class="help-h3">「今すぐリクエストしたい！」配信中の使い方</h3>
+            <ol class="help-ol">
+              <li>トップ画面で <code class="help-btn">[ 今夜の1曲を探す ]</code></li>
+              <li>3問サクッと答える</li>
+              <li>結果画面で気になる曲の 📋 をタップ</li>
+              <li>コメント欄にペースト → 送信</li>
+            </ol>
+            <p class="help-note">3問だけだから、配信を聴きながらでも30秒で完了。</p>
+
+            <h3 class="help-h3">「あの曲リクエストしたい」曲名がわかってるとき</h3>
+            <ol class="help-ol">
+              <li><code class="help-btn">[ 全曲リスト ]</code> をタップ</li>
+              <li>検索バーに曲名 or アーティスト名を入力</li>
+              <li>出てきた曲の 📋 をタップ</li>
+            </ol>
+            <p class="help-note">検索は<strong>部分一致</strong>なので、うろ覚えでも大丈夫。<br>五十音インデックス（あ・か・さ…）でも絞れます。</p>
+
+            <h3 class="help-h3">ゆっくり曲を眺めたい・お気に入りを作りたい</h3>
+            <p>配信前のおだやかな時間に。</p>
+            <ol class="help-ol">
+              <li><code class="help-btn">[ 全曲リスト ]</code> でスクロール</li>
+              <li>気になった曲は ❤️ でお気に入りに</li>
+              <li>配信が始まったら <code class="help-btn">[ お気に入り ]</code> から選んでリクエスト</li>
+            </ol>
+
+            <h3 class="help-h3">「次は何聴こう」迷ったとき</h3>
+            <p><code class="help-btn">[ シャッフル ]</code> でランダムに1曲。新しい曲との出会いに。</p>
+
+            <h3 class="help-h3">歌ってもらった曲を記録したい</h3>
+            <p>ゑうたんに歌ってもらえたら、結果画面の <strong>✅アイコン</strong> で記録。</p>
+            <p><code class="help-btn">[ 聴いた記録 ]</code>（🌙歌ってもらった曲リスト）で、いつ何回聴いたかを振り返れます。<br>何回でも記録できるので、お気に入りを繰り返しお願いしたときも安心。</p>
+          </section>
+
+          <hr class="help-hr">
+
+          <!-- 知っておくと便利なこと -->
+          <section class="help-section">
+            <h2 class="help-h2">✨ 知っておくと便利なこと</h2>
+
+            <h3 class="help-h3">同じ気分で診断しても、毎回ちがう曲が出ます</h3>
+            <p>「もう一度診断」を押すと、<strong>直前に出た5曲は次回除外</strong>されます。<br>気分が変わらなくても、新しい曲に出会えるよ。</p>
+
+            <h3 class="help-h3">曲カードのバッジに注目</h3>
+            <ul class="help-ul">
+              <li><code class="help-badge">Key: -1</code> などの<strong>キー情報</strong>（音域調整のメモ）</li>
+              <li><code class="help-badge">1番のみ</code> <code class="help-badge">練習中</code> などの<strong>状態バッジ</strong></li>
+            </ul>
+            <p class="help-note">リクエスト前にチェックしておくと、お互いラクです。</p>
+
+            <h3 class="help-h3">試聴したいとき</h3>
+            <p>曲カードの 🎧 🍎 ▶️ ボタンから、それぞれのサービスの検索結果に飛べます。</p>
+            <ul class="help-ul">
+              <li>🎧 Spotify</li>
+              <li>🍎 Apple Music</li>
+              <li>▶️ YouTube Music</li>
+            </ul>
+
+            <h3 class="help-h3">Xでシェアできます</h3>
+            <p>結果画面の 🐦 ボタンで、見つかった曲をXに投稿できるよ。<br>「今夜はこの曲お願いしたい！」を共有して、ゑうえうにを盛り上げよう。</p>
+          </section>
+
+          <hr class="help-hr">
+
+          <!-- データについて -->
+          <section class="help-section">
+            <h2 class="help-h2">💾 データについて大切なこと</h2>
+            <p>お気に入り・聴いた記録・メモは、<strong>お使いのブラウザに保存</strong>されます。<br>サーバーには送られません（つまり、運営側でも見えません）。</p>
+
+            <h3 class="help-h3">こんなことに気をつけてね</h3>
+            <ul class="help-ul">
+              <li>📱 スマホとPCなど、<strong>端末をまたいで見ることはできません</strong></li>
+              <li>🗑 ブラウザの履歴・キャッシュを消すと、<strong>保存データも消えます</strong></li>
+              <li>🕵️ シークレットモード／プライベートブラウジングでは<strong>保存されません</strong></li>
+              <li>⏳ 容量や設定により、自動で消えることがあります</li>
+            </ul>
+
+            <h3 class="help-h3">大切なデータはエクスポートを</h3>
+            <p><code class="help-btn">[ About ]</code> 画面の「データを書き出す」ボタンで、お気に入りや聴いた記録を<strong>JSON形式でダウンロード</strong>できます。</p>
+            <p class="help-note">機種変更やブラウザ移行のときは、こちらで保存してから「データを読み込む」で復元してね。</p>
+          </section>
+
+          <hr class="help-hr">
+
+          <!-- 声を聞かせて -->
+          <section class="help-section">
+            <h2 class="help-h2">📮 こんな機能ほしい・バグみつけた</h2>
+            <p>リスナーさんからの声で、もっと使いやすくなります。</p>
+            <ul class="help-ul">
+              <li>「こういう機能があったら嬉しい」</li>
+              <li>「ここで困った／うまく動かなかった」</li>
+              <li>「タグが曲とちょっと合わない気がする」</li>
+            </ul>
+            <p>など、気軽に <strong>インスタのDM</strong> で教えてください 🌙</p>
+          </section>
+
+          <hr class="help-hr">
+
+          <!-- さいごに -->
+          <section class="help-section help-section--closing">
+            <h2 class="help-h2">🐦 さいごに</h2>
+            <p>ゑうたんの歌で、誰かの夜がほんの少しあたたかくなりますように。<br>そのお手伝いを、このサイトができたら嬉しいです。</p>
+            <p class="help-cta"><code class="help-btn">[ 今夜の1曲を探す ]</code> で、あなたの1曲が見つかりますように。</p>
+          </section>
+
+          <p class="help-footer-note">ALL NIGHT SONGS は、ゑうたんのリスナーが作ったファンサイトです。</p>
+
+        </div>
+
+        <div style="margin-top:32px;text-align:center;">
+          <a href="#/" class="btn btn-secondary">[ トップへ戻る ]</a>
+        </div>
+      </div>
+    </div>`;
 }
 
 /* ================================================================

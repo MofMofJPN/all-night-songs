@@ -14,6 +14,7 @@ import {
   renderFavorites,
   renderHistory,
   renderAbout,
+  renderHelp,
   renderShuffle,
   showWelcomeModal,
 } from './ui.js';
@@ -42,6 +43,9 @@ function route() {
       break;
     case '/about':
       renderAbout(app);
+      break;
+    case '/help':
+      renderHelp(app);
       break;
     case '/quiz':
       renderQuiz(app, {}, 0);
