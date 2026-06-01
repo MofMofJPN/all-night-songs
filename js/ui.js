@@ -19,25 +19,8 @@ import {
 // メモ入力フォームのスタイルは style.css に記載
 import { escapeHtml, showToast, copyToClipboard, shuffle } from './utils.js';
 
-/* ---- カラス SVG（プレースホルダー） ---- */
-const CROW_SVG = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 52"
-     width="48" height="36" class="crow-svg" aria-hidden="true">
-  <!-- 頭 -->
-  <circle cx="18" cy="15" r="10" fill="currentColor"/>
-  <!-- くちばし -->
-  <polygon points="8,12 8,18 1,15" fill="currentColor"/>
-  <!-- 胴体 -->
-  <ellipse cx="42" cy="34" rx="18" ry="12" fill="currentColor"/>
-  <!-- 首（頭と胴をつなぐ） -->
-  <path d="M25,20 Q30,26 30,34 L35,34 Q35,26 33,20 Q27,15 25,20Z" fill="currentColor"/>
-  <!-- 尾 -->
-  <polygon points="58,28 70,20 70,42 58,38" fill="currentColor"/>
-  <!-- 羽の線 -->
-  <path d="M28,30 Q42,24 57,30" stroke="var(--color-bg)" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- 目 -->
-  <circle cx="14" cy="13" r="2.5" fill="var(--color-bg)"/>
-</svg>`;
+/* ---- カラス PNG ---- */
+const CROW_SVG = `<img src="assets/crow.png" alt="" class="crow-img" aria-hidden="true">`;
 
 /* ---- 共通 HTML パーツ ---- */
 

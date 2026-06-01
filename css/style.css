@@ -194,6 +194,14 @@ img, svg {
   transition: opacity var(--transition-mid);
 }
 
+.crow-img {
+  height: 60px;
+  width: auto;
+  opacity: 0.7;
+  display: block;
+  transition: opacity var(--transition-mid);
+}
+
 /* ---- Buttons ---- */
 .btn {
   display: inline-flex;
