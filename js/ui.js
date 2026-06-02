@@ -222,7 +222,7 @@ export function bindSongCardEvents(container, onUpdate) {
       const id = shareBtn.dataset.id;
       const song = getSongById(id);
       if (song) {
-        const text = `今夜の1曲は「${song.title}」/ ${song.artist} 🌙\nゑうたんさんに歌ってほしい！\n#ゑうえうに #ALLNIGHTSONGS\n${location.origin}${location.pathname}`;
+        const text = `今夜の1曲は「${song.title}」/ ${song.artist} 🌙\nゑうたんに歌ってほしい！\n#ゑうえうに #ALLNIGHTSONGS\n${location.origin}${location.pathname}`;
         const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank', 'noopener,noreferrer');
       }
